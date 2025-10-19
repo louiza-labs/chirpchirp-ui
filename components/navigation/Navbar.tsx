@@ -45,7 +45,9 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Button size="sm">Subscribe</Button>
+            <Button asChild size="sm">
+              <Link href="/subscribe">Subscribe</Link>
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
