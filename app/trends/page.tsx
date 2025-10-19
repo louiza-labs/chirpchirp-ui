@@ -130,9 +130,7 @@ export default async function TrendsPage() {
           <h1 className="text-4xl font-bold tracking-tight text-gray-900">
             Activity Trends
           </h1>
-          <p className="text-gray-600">
-            Discover patterns in bird activity at your feeders
-          </p>
+          <p className="text-gray-600">See patterns in bird sighting</p>
         </div>
 
         {/* Recent Activity */}
