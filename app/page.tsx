@@ -1,9 +1,11 @@
 import MainGalleryCard from "@/components/MainGalleryCard";
 import SpeciesCarousel from "@/components/SpeciesCarousel";
 import { fetchImagesWithAttribution, fetchListOfSpecies } from "@/lib/data";
+import type { MainGalleryCardProps } from "@/types";
 import Image from "next/image";
+
 export default async function Home() {
-  const images = await fetchImagesWithAttribution();
+  const images = await fetchImagesWithAttribution({ imageId: "" });
   const species = await fetchListOfSpecies();
   console.log("the species: ", species);
   return (
@@ -13,7 +15,7 @@ export default async function Home() {
           <SpeciesCarousel speciesList={species} />
         </div>
         <div className="grid xl:grid-cols-2 grid-cols-1 w-full h-full gap-10">
-          {images.map((image, index) => (
+          {images.map((image: MainGalleryCardProps) => (
             <MainGalleryCard
               id={image.id}
               taken_on={image.taken_on}

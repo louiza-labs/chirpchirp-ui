@@ -14,56 +14,13 @@ import { Copy, Share2 } from "lucide-react";
 import Image from "next/image";
 
 import { birdAvatars } from "@/lib/birdAvatars";
-
-interface MainGalleryCardProps {
-  id: string;
-  taken_on: string;
-  stored_on: string;
-  created_at: string;
-  file_name: string;
-  local_file_name: string;
-  image_size: number;
-  image_url: string;
-  download_url: string;
-  enhanced_image_url: string;
-  camera_id: number;
-  camera_name: string;
-  modem_meid: string;
-  latitude: number;
-  longitude: number;
-  is_video: boolean;
-  video_url: string | null;
-  user_id: number;
-  is_favorite: boolean;
-  temperature: string;
-  moon_phase: string;
-  tags: string[];
-  attributions: any[];
-}
+import type { MainGalleryCardProps } from "@/types";
 
 const MainGalleryCard = ({
-  id,
   taken_on,
-  stored_on,
-  created_at,
   file_name,
-  local_file_name,
-  image_size,
   image_url,
-  download_url,
-  enhanced_image_url,
-  camera_id,
-  camera_name,
-  modem_meid,
-  latitude,
-  longitude,
-  is_video,
-  video_url,
-  user_id,
-  is_favorite,
   temperature,
-  moon_phase,
-  tags,
   attributions,
 }: MainGalleryCardProps) => {
   const hasAttributions = !!attributions.length;

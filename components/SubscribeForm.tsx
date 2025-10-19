@@ -40,7 +40,7 @@ export default function SubscribeForm() {
           text: "Something went wrong. Please try again.",
         });
       }
-    } catch (error) {
+    } catch {
       setMessage({
         type: "error",
         text: "Failed to subscribe. Please try again later.",

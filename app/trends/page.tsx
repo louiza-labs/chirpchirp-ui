@@ -25,7 +25,7 @@ interface ImageData {
 }
 
 export default async function TrendsPage() {
-  const allImages = await fetchImagesWithAttribution();
+  const allImages = await fetchImagesWithAttribution({ imageId: "" });
 
   // Filter images with valid data
   const imagesWithData = allImages.filter(
@@ -67,16 +67,16 @@ export default async function TrendsPage() {
   // Time period breakdown
   const earlyMorning = Object.entries(hourCounts)
     .filter(([hour]) => parseInt(hour) >= 5 && parseInt(hour) < 9)
-    .reduce((sum, [_, count]) => sum + count, 0);
+    .reduce((sum, [, count]) => sum + count, 0);
   const midDay = Object.entries(hourCounts)
     .filter(([hour]) => parseInt(hour) >= 9 && parseInt(hour) < 17)
-    .reduce((sum, [_, count]) => sum + count, 0);
+    .reduce((sum, [, count]) => sum + count, 0);
   const evening = Object.entries(hourCounts)
     .filter(([hour]) => parseInt(hour) >= 17 && parseInt(hour) < 21)
-    .reduce((sum, [_, count]) => sum + count, 0);
+    .reduce((sum, [, count]) => sum + count, 0);
   const night = Object.entries(hourCounts)
     .filter(([hour]) => parseInt(hour) >= 21 || parseInt(hour) < 5)
-    .reduce((sum, [_, count]) => sum + count, 0);
+    .reduce((sum, [, count]) => sum + count, 0);
 
   const totalActivity = earlyMorning + midDay + evening + night;
 

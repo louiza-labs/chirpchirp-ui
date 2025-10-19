@@ -48,7 +48,7 @@ interface ImageData {
 
 export default async function SpeciesPage() {
   const species = await fetchListOfSpecies();
-  const allImages = await fetchImagesWithAttribution();
+  const allImages = await fetchImagesWithAttribution({ imageId: "" });
 
   // Calculate insights
   const totalSpecies = species.length;
