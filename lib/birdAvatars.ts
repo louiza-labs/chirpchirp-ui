@@ -1,25 +1,25 @@
 export const birdAvatars: Record<string, string> = {
   // Original list
   "Hermit Thrush":
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Catharus_guttatus_-Madison%2C_Wisconsin%2C_USA-8.jpg/440px-Catharus_guttatus_-Madison%2C_Wisconsin%2C_USA-8.jpg",
+    "https://www.allaboutbirds.org/guide/assets/photo/303450821-1280px.jpg",
   "American Goldfinch":
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/American_Goldfinch-_Male-27527-2.jpg/440px-American_Goldfinch-_Male-27527-2.jpg",
+    "https://www.allaboutbirds.org/guide/assets/photo/306710711-480px.jpg",
   "Northern Cardinal":
     "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Cardinal.jpg/440px-Cardinal.jpg",
   "Gray Catbird":
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/2015.06.20.120227_Gray_Catbird_Anahuac_National_Wildlife_Refuge_Texas.jpg/440px-2015.06.20.120227_Gray_Catbird_Anahuac_National_Wildlife_Refuge_Texas.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/9/91/Gray_catbird_%2885315%29.jpg",
   "American Tree Sparrow":
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Spizellaarborea2.jpg/440px-Spizellaarborea2.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJqzKWk-OvSZVIKqZFpZv-TUJnxOrWPbvCJQ&s",
   "Chipping Sparrow":
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Chipping_Sparrow_-_Spizella_passerina%2C_Oakton%2C_Virginia.jpg/440px-Chipping_Sparrow_-_Spizella_passerina%2C_Oakton%2C_Virginia.jpg",
+    "https://www.fws.gov/sites/default/files/styles/scale_width_1200/public/images/2025-06/chip_spar_4.17.25.JPG.webp?itok=RK9WVbqQ",
   "Mourning Dove":
     "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Mourning_Dove_2006.jpg/440px-Mourning_Dove_2006.jpg",
   "Song Sparrow":
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Melospiza_melodia_-Madison%2C_Wisconsin%2C_USA-8.jpg/440px-Melospiza_melodia_-Madison%2C_Wisconsin%2C_USA-8.jpg",
+    "https://www.fws.gov/sites/default/files/styles/scale_width_1200/public/images/2019-06/32805.jpg.webp?itok=dX166bem",
   "American Robin":
     "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Turdus-migratorius-002.jpg/440px-Turdus-migratorius-002.jpg",
   "White-throated Sparrow":
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/White-throated_Sparrow.jpg/440px-White-throated_Sparrow.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/White-Throated_Sparrow_%289597198645%29.jpg/1531px-White-Throated_Sparrow_%289597198645%29.jpg?20151118211547",
   "House Sparrow":
     "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Passer_domesticus_male_%2815%29.jpg/440px-Passer_domesticus_male_%2815%29.jpg",
   "Blue Jay":
@@ -27,9 +27,9 @@ export const birdAvatars: Record<string, string> = {
   "No Cv Result":
     "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png",
   "Northern Mockingbird":
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Northern_Mockingbird_%2852961686539%29.jpg/440px-Northern_Mockingbird_%2852961686539%29.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Northern_Mockingbird_USA.jpg/1600px-Northern_Mockingbird_USA.jpg",
   "Eastern Bluebird":
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Male_Eastern_Bluebird_-_Tulsa_OK.jpg/440px-Male_Eastern_Bluebird_-_Tulsa_OK.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/9/9b/Eastern_Bluebird-27527-2.jpg?20211022162518",
 
   // Additional Northeast US native birds
   "Black-capped Chickadee":
@@ -75,7 +75,7 @@ export const birdAvatars: Record<string, string> = {
   "Wood Thrush":
     "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Wood_Thrush-27527-3.jpg/440px-Wood_Thrush-27527-3.jpg",
   "Brown-headed Cowbird":
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Molothrus_ater_-_Brown-headed_Cowbird_%28male%29%2C_Rockville%2C_Maryland.jpg/440px-Molothrus_ater_-_Brown-headed_Cowbird_%28male%29%2C_Rockville%2C_Maryland.jpg",
+    "https://www.fws.gov/sites/default/files/styles/scale_width_1200/public/2021-06/AvianParasitism-%20Brown-HeadedCowbird-MikeCarloUSFWS.jpg.webp?itok=3a_FEqHm",
   "Yellow Warbler":
     "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Yellow_Warbler.jpg/440px-Yellow_Warbler.jpg",
   "Scarlet Tanager":

@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -12,9 +13,9 @@ export function Navbar() {
 
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/services", label: "Services" },
-    { href: "/contact", label: "Contact" },
+    { href: "/species", label: "Species" },
+    { href: "/trends", label: "Trends" },
+    // { href: "/contact", label: "Contact" },
   ];
 
   return (
@@ -23,12 +24,14 @@ export function Navbar() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-              <span className="text-lg font-bold text-primary-foreground">
-                L
-              </span>
-            </div>
-            <span className="text-xl font-semibold">Logo</span>
+            <Image
+              src="/cardinal.png"
+              alt="chirpchirp logo"
+              width={32}
+              height={32}
+              className="h-8 w-8 rounded-sm"
+            />
+            <span className="text-xl font-semibold">chirpchirp</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -42,7 +45,7 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Button size="sm">Get Started</Button>
+            <Button size="sm">Subscribe</Button>
           </div>
 
           {/* Mobile Menu Button */}

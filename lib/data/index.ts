@@ -1,5 +1,7 @@
 "use server";
+
 import axios from "axios";
+import { birdAvatars } from "../birdAvatars";
 import { CORE_BE_API_URL } from "../constants";
 
 export const fetchImagesWithAttribution = async (imageId = "") => {
@@ -17,4 +19,22 @@ export const fetchImagesWithAttribution = async (imageId = "") => {
     const { data } = response;
     return data.images;
   }
+};
+
+export const fetchListOfSpecies = async () => {
+  const response = await axios.get(`${CORE_BE_API_URL}/species`);
+  const { data } = response;
+  console.log("the data", data);
+  const listOfSpecies = data.species;
+  const filteredListOfSpecies = listOfSpecies.filter(
+    (species) => species.species !== "No Cv Result"
+  );
+
+  const speciesWithImages = filteredListOfSpecies.map((species) => {
+    return {
+      ...species,
+      image: birdAvatars[species.species],
+    };
+  });
+  return speciesWithImages;
 };
