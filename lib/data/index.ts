@@ -17,6 +17,7 @@ export const fetchImagesWithAttribution = async ({
     if (species) {
       url.searchParams.append("species", species);
     }
+    console.log("the url being used", url);
     const response = await axios.get(url.toString());
     const { data } = response;
 

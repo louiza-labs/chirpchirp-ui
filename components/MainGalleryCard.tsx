@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Copy, Share2 } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
 import { birdAvatars } from "@/lib/birdAvatars";
 import type { MainGalleryCardProps } from "@/types";
@@ -23,11 +24,32 @@ const MainGalleryCard = ({
   temperature,
   attributions,
 }: MainGalleryCardProps) => {
+  const [showAllAttributions, setShowAllAttributions] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const hasAttributions = !!attributions.length;
-  const attributionsData = hasAttributions ? attributions[0] : { species: "" };
   const dateObj = new Date(taken_on);
-  const species = attributionsData.species;
-  const hasBirdAvatar = !!birdAvatars[species];
+  const primarySpecies = hasAttributions ? attributions[0].species : "";
+  const hasBirdAvatar = !!birdAvatars[primarySpecies];
+  const additionalCount = attributions.length - 1;
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setShowAllAttributions(false);
+      }
+    };
+
+    if (showAllAttributions) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showAllAttributions]);
 
   const formattedDate = dateObj.toLocaleDateString("en-US", {
     weekday: "long",
@@ -50,9 +72,13 @@ const MainGalleryCard = ({
   const handleShare = async () => {
     if (navigator.share) {
       try {
+        const speciesText =
+          attributions.length > 1
+            ? attributions.map((a) => a.species).join(", ")
+            : primarySpecies;
         await navigator.share({
-          title: `${species} - Bird Photo`,
-          text: `Check out this ${species} spotted on ${formattedDate}`,
+          title: `${speciesText} - Bird Photo`,
+          text: `Check out this ${speciesText} spotted on ${formattedDate}`,
           url: image_url,
         });
       } catch (err) {
@@ -67,16 +93,45 @@ const MainGalleryCard = ({
   return (
     <Card className="overflow-hidden border border-gray-200/60 shadow-lg shadow-black/5 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-white">
       <CardHeader>
-        <div className="flex flex-row items-center gap-x-3">
+        <div className="flex flex-row items-center gap-x-3 relative">
           {hasBirdAvatar ? (
             <Avatar className="ring-2 ring-offset-2 ring-blue-500/20 hover:ring-blue-500/40 transition-all">
-              <AvatarImage src={birdAvatars[species]} />
+              <AvatarImage src={birdAvatars[primarySpecies]} />
               <AvatarFallback>Bird</AvatarFallback>
             </Avatar>
           ) : null}
-          <CardTitle className="font-bold tracking-tight text-gray-900">
-            {attributionsData.species}
-          </CardTitle>
+          <div className="flex items-center gap-x-2 relative" ref={dropdownRef}>
+            <CardTitle className="font-bold tracking-tight text-gray-900">
+              {hasAttributions ? attributions[0].species : "Unknown"}
+            </CardTitle>
+            {additionalCount > 0 && (
+              <>
+                <button
+                  onClick={() => setShowAllAttributions(!showAllAttributions)}
+                  className="text-xs text-blue-600 hover:text-blue-800 font-medium transition-colors"
+                >
+                  +{additionalCount} more
+                </button>
+                {showAllAttributions && (
+                  <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 p-3 z-10 min-w-[250px]">
+                    <div className="flex flex-col gap-y-2">
+                      {attributions.slice(1).map((attr, idx) => (
+                        <div
+                          key={idx}
+                          className="text-sm text-gray-700 flex items-center justify-between gap-x-3"
+                        >
+                          <span className="font-medium">{attr.species}</span>
+                          <span className="text-xs text-gray-500 whitespace-nowrap">
+                            {Math.round(attr.confidence * 100)}%
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </>
+            )}
+          </div>
         </div>
         <CardAction>
           <Button
