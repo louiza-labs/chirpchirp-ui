@@ -5,10 +5,19 @@ import axios from "axios";
 import { birdAvatars } from "../birdAvatars";
 import { CORE_BE_API_URL } from "../constants";
 
-export const fetchImagesWithAttribution = async ({ imageId = "" }) => {
+export const fetchImagesWithAttribution = async ({
+  imageId = "",
+  species = "",
+}) => {
+  console.log("the species", species);
   // if no image id passed, fetch all images
   if (!imageId) {
-    const response = await axios.get(`${CORE_BE_API_URL}/images?limit=100`);
+    const url = new URL(`${CORE_BE_API_URL}/images`);
+    url.searchParams.append("limit", "100");
+    if (species) {
+      url.searchParams.append("species", species);
+    }
+    const response = await axios.get(url.toString());
     const { data } = response;
 
     return data.images;
@@ -23,7 +32,6 @@ export const fetchImagesWithAttribution = async ({ imageId = "" }) => {
 export const fetchListOfSpecies = async () => {
   const response = await axios.get(`${CORE_BE_API_URL}/species`);
   const { data } = response;
-  console.log("the data", data);
   const listOfSpecies = data.species;
   const filteredListOfSpecies = listOfSpecies.filter(
     (species: speciesObj) => species.species !== "No Cv Result"

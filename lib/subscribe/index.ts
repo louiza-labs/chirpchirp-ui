@@ -8,17 +8,22 @@ interface subscribeProps {
 }
 
 export const handleSubscribe = async ({ email, name }: subscribeProps) => {
-  if (!email && !name) {
-    return;
+  if (!email || !name) {
+    return { success: false, error: "Email and name are required" };
   }
-  const subscribeResult = await axios.post(
-    `${EMAIL_SERVICE_API_URL}/subscribe`,
-    {
-      email,
-      name,
-    }
-  );
-  return subscribeResult;
+  try {
+    const subscribeResult = await axios.post(
+      `${EMAIL_SERVICE_API_URL}/subscribe`,
+      {
+        email,
+        name,
+      }
+    );
+    return { success: true, data: subscribeResult.data };
+  } catch (error) {
+    console.error("Subscribe error:", error);
+    return { success: false, error: "Failed to subscribe" };
+  }
 };
 
 export const handleUnsubscribe = async ({ email }: { email: string }) => {

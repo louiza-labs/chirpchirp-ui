@@ -2,19 +2,29 @@ import MainGalleryCard from "@/components/MainGalleryCard";
 import SpeciesCarousel from "@/components/SpeciesCarousel";
 import { fetchImagesWithAttribution, fetchListOfSpecies } from "@/lib/data";
 import type { MainGalleryCardProps } from "@/types";
-import Image from "next/image";
 
-export default async function Home() {
-  const images = await fetchImagesWithAttribution({ imageId: "" });
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ species?: string }>;
+}) {
+  const params = await searchParams;
+  const selectedSpecies = params.species;
+  const images = await fetchImagesWithAttribution({
+    imageId: "",
+    species: selectedSpecies,
+  });
   const species = await fetchListOfSpecies();
-  console.log("the species: ", species);
   return (
-    <div className="font-sans grid  min-h-screen p-8 pb-20 gap-16 sm:px-20">
-      <main className="flex flex-col gap-[32px] row-start-1 items-center sm:items-start">
-        <div>
-          <SpeciesCarousel speciesList={species} />
+    <div className="font-sans grid  min-h-screen p-8 pb-20 gap-16 sm:px-10">
+      <main className="flex flex-col gap-[32px] row-start-1 items-center sm:items-start overflow-auto">
+        <div className="w-full overflow-clip">
+          <SpeciesCarousel
+            speciesList={species}
+            selectedSpecies={selectedSpecies}
+          />
         </div>
-        <div className="grid xl:grid-cols-2 grid-cols-1 w-full h-full gap-10">
+        <div className="grid xl:grid-cols-2 sm:grid-cols-3 grid-cols-1 w-full h-full gap-10">
           {images.map((image: MainGalleryCardProps) => (
             <MainGalleryCard
               id={image.id}
@@ -45,53 +55,7 @@ export default async function Home() {
           ))}
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center"></footer>
     </div>
   );
 }

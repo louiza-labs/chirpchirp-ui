@@ -27,7 +27,8 @@ export default function SubscribeForm() {
 
     try {
       const result = await handleSubscribe({ email, name });
-      if (result?.status === 200 || result?.status === 201) {
+      console.log("the subscribe result", result);
+      if (result?.success) {
         setMessage({
           type: "success",
           text: "Successfully subscribed! Check your email for confirmation.",
@@ -37,7 +38,7 @@ export default function SubscribeForm() {
       } else {
         setMessage({
           type: "error",
-          text: "Something went wrong. Please try again.",
+          text: result?.error || "Something went wrong. Please try again.",
         });
       }
     } catch {
